@@ -1,0 +1,9 @@
+{
+  "@class" : "org.apereo.cas.services.RegexRegisteredService",
+  "serviceId" : "^http://localhost.*",
+  "name" : "本地服务",
+  "theme" : "demo",
+  "id" : 10000003,
+  "description" : "这个是一个本地服务器，通过localhost访问",
+  "evaluationOrder" : 1
+}
