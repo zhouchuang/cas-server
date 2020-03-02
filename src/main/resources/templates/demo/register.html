@@ -1,10 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>账户注册</title>
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+    <meta charset="UTF-8"/>
+    <title>用户注册</title>
+    <style>
+        .form-signin {
+            /* width: 100%; */
+            max-width: 330px;
+            padding: 15px;
+            margin: 0 auto;
+        }
+        .font-weight-normal {
+            font-weight: 400!important;
+        }
+        .form-signin .form-control {
+            position: relative;
+            box-sizing: border-box;
+            height: auto;
+            padding: 10px;
+            font-size: 16px;
+        }
+        .form-control {
+            display: block;
+            width: 100%;
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: .25rem;
+            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        }
+        btn:not(:disabled):not(.disabled) {
+            cursor: pointer;
+        }
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+        .btn-group-lg>.btn, .btn-lg {
+            padding: .5rem 1rem;
+            font-size: 1.25rem;
+            line-height: 1.5;
+            border-radius: .3rem;
+        }
+        .btn-primary {
+            color: #fff;
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+    </style>
 </head>
-<body>
-        register
+<body style="text-align: center!important;">
+<form class="form-signin" id="register" action="/userController/register" method="POST">
+    <h1 class="h3 mb-3 font-weight-normal">用户注册</h1>
+    <input type="username"  name="username" class="form-control" placeholder="请输入账号" required="" autofocus="" />
+    <input type="password"  name="password" class="form-control" placeholder="请输入密码" required="" autofocus="" />
+    <input type="name"  name="name" class="form-control" placeholder="请输入姓名" required="" autofocus="" />
+    <button type="button" class="btn btn-lg btn-primary btn-block"  id="registerBtn">注册</button>
+    <p style="color: #6c757d!important;">© 周创2020</p>
+
+</form >
+<script>
+    $(document).ready(function () {
+
+        $('body').bind('keyup', function(event) {
+            if (event.keyCode == "13") {
+                $('#registerBtn').click();
+            }
+        });
+
+
+        $("#registerBtn").on('click',function () {
+            var data = {username:$("#register input").eq(0).val(),password:$("#register input").eq(1).val(),name:$("#register input").eq(2).val()};
+            /*<![CDATA[*/
+            if(data.username&&data.password&&data.name){
+                $.ajax({
+                    url: '/toRegister',
+                    contentType: 'application/json',
+                    type: 'POST',
+                    data: JSON.stringify(data),
+                    dataType: 'json',
+                    success: function (result) {
+                        alert(result.msg);
+                        if(result.status==200){
+                            window.location.href = "/cas/login";
+                        }
+                    },
+                    error: function (e) {
+                        alert(e);
+                    },
+                    complete: function () {
+
+                    }
+                })
+            }else{
+                alert("请输入所有填写项");
+            }
+            /*]]>*/
+        });
+    });
+</script>
 </body>
 </html>

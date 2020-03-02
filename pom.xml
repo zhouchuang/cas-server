@@ -142,7 +142,18 @@
                     <artifactId>mysql-connector-java</artifactId>
                     <version>${mysql.driver.version}</version>
                 </dependency>
+               <!-- &lt;!&ndash; jdbcTemplate 依赖 &ndash;&gt;
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-jdbc</artifactId>
+                </dependency>-->
                 <!--数据库认证相关 end-->
+
+                <dependency>
+                    <groupId>org.projectlombok</groupId>
+                    <artifactId>lombok</artifactId>
+                    <version>1.16.18</version>
+                </dependency>
             </dependencies>
         </profile>
 
